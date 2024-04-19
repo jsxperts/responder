@@ -1,7 +1,7 @@
 {
   "name": "@jsxperts/responder",
   "version": "0.0.1",
-  "description": "The Express Response Builder simplifies HTTP response creation in Express.js, offering a streamlined API for consistent, structured outputs, reducing boilerplate and enhancing code readability.",
+  "description": "Responder simplifies crafting HTTP responses in Express.js applications. It offers a straightforward API, reducing redundant code and enhancing code clarity.",
   "main": "../dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
