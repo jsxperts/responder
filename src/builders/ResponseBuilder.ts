@@ -53,6 +53,7 @@ export class ResponseBuilder {
      * @returns {ExpressResponse} The Express response object.
      */
     public success(): ExpressResponse {
+        this.model.setStatus(ResponseStatus.SUCCESS);
         return this.res.status(this.model.getCode()).send(this.model.toJSON());
     }
 
@@ -61,12 +62,40 @@ export class ResponseBuilder {
      * @returns {ExpressResponse} The Express response object.
      */
     public error(): ExpressResponse {
+        this.model.setStatus(ResponseStatus.ERROR);
         return this.res.status(this.model.getCode()).send({
             code: 500,
             status: ResponseStatus.ERROR,
             message: 'Internal Server Error!',
             ...this.model.toJSON(),
         });
+    }
+
+    /**
+     * Sends a pending response.
+     * @returns {ExpressResponse} The Express response object.
+     */
+    public pending(): ExpressResponse {
+        this.model.setStatus(ResponseStatus.PENDING);
+        return this.res.status(this.model.getCode()).send(this.model.toJSON());
+    }
+
+    /**
+     * Sends a rejected response.
+     * @returns {ExpressResponse} The Express response object.
+     */
+    public rejected(): ExpressResponse {
+        this.model.setStatus(ResponseStatus.REJECTED);
+        return this.res.status(this.model.getCode()).send(this.model.toJSON());
+    }
+
+    /**
+     * Sends a failed response.
+     * @returns {ExpressResponse} The Express response object.
+     */
+    public failed(): ExpressResponse {
+        this.model.setStatus(ResponseStatus.FAILED);
+        return this.res.status(this.model.getCode()).send(this.model.toJSON());
     }
 
     /**
