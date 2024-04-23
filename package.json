@@ -2,11 +2,11 @@
   "name": "@jsxperts/responder",
   "version": "0.0.1",
   "description": "Responder simplifies crafting HTTP responses in Express.js applications. It offers a straightforward API, reducing redundant code and enhancing code clarity.",
-  "main": "../dist/index.js",
+  "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "lint": "eslint src --ext .ts",
-    "lint:fix": "eslint --fix test --ext .ts",
+    "lint:fix": "eslint --fix src --ext .ts",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rimraf ./build && tsc"
   },
