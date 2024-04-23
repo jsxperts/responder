@@ -36,9 +36,9 @@ export class ResponseModel {
     /**
      * An array of error objects associated with the response.
      * @private
-     * @type {ErrorObject[]}
+     * @type {ErrorObject | ErrorObject[]}
      */
-    private errors: ErrorObject[];
+    private errors: ErrorObject | ErrorObject[];
 
     /**
      * Meta information associated with the response.
@@ -148,9 +148,9 @@ export class ResponseModel {
 
     /**
      * Gets the array of error objects associated with the response.
-     * @returns {ErrorObject[]} The array of error objects.
+     * @returns {ErrorObject | ErrorObject[]} The array of error objects.
      */
-    public getErrors(): ErrorObject[] {
+    public getErrors(): ErrorObject | ErrorObject[] {
         return this.errors;
     }
 
@@ -158,7 +158,7 @@ export class ResponseModel {
      * Sets the array of error objects associated with the response.
      * @param {ErrorObject[]} errors - The array of error objects to set.
      */
-    public setErrors(errors: ErrorObject[]): void {
+    public setErrors(errors: ErrorObject | ErrorObject[]): void {
         this.errors = errors;
     }
 
@@ -205,6 +205,7 @@ export class ResponseModel {
             message: this.message,
         };
 
+        // Add data property if it exists
         if (this.data !== undefined) {
             data = {
                 ...data,
@@ -212,13 +213,18 @@ export class ResponseModel {
             };
         }
 
-        if (this.errors.length > 0) {
+        // Add errors property if errors exist
+        if (
+            (Array.isArray(this.errors) && this.errors.length > 0) ||
+            Object.keys(this.errors).length > 0
+        ) {
             data = {
                 ...data,
                 errors: this.errors,
             };
         }
 
+        // Add meta property if meta exists
         if (Object.keys(this.meta).length > 0) {
             data = {
                 ...data,
@@ -226,6 +232,7 @@ export class ResponseModel {
             };
         }
 
+        // Add headers property if headers exist
         if (Object.keys(this.headers).length > 0) {
             data = {
                 ...data,

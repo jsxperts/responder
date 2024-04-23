@@ -19,6 +19,11 @@ export { StatusCode, StatusMessage, ResponseStatus } from './enums';
 export { ResponderMiddleware } from './middlewares';
 
 /**
+ * Export of ErrorTransformer class from the helpers module.
+ */
+export { ErrorTransformer } from './helpers';
+
+/**
  * Helper function to create a ResponseBuilder instance.
  * @param {ExpressResponse} res - The Express response object.
  * @param {number} code - The HTTP status code for the response.

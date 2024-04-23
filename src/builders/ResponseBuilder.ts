@@ -143,7 +143,7 @@ export class ResponseBuilder {
      * @param {ErrorObject[]} value - The error objects.
      * @returns {this} The ResponseBuilder instance.
      */
-    public errors(value: ErrorObject[]): this {
+    public errors(value: ErrorObject | ErrorObject[]): this {
         this.model.setErrors(value);
         return this;
     }
